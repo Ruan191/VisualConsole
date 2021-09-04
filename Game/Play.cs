@@ -6,8 +6,8 @@ namespace Game
 {
     public abstract class Play
     {
-        public static event EventHandler Start;
-        public static event EventHandler Update;
+        protected static event EventHandler Start;
+        protected static event EventHandler Update;
 
         public static void PerformStart(){
             if (Start != null){

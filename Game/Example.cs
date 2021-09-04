@@ -9,6 +9,8 @@ namespace Game{
         }
 
         void _Start(object sender, EventArgs e){
+            Debug.enabled = false;
+
             Map map = Map.Build(new Vector2(50,50));
             MapObject player = new MapObject('#', new Vector2(map.size.x / 2, map.size.y / 2), new Vector2(3,5));
             player.Spawn(map, player, new Vector2(map.size.x / 2, map.size.y / 2));

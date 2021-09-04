@@ -25,13 +25,15 @@ namespace Game
 
         public static Map Build(Vector2 size)
         {
+            char tile = Debug.enabled ? '.' : ' ';
+
             Map m = new Map(size);
             for (int y = 0; y < m.size.y; y++)
             {
                 for (int x = 0; x < m.size.x; x++)
                 {
-                    m.map[x, y] = new MapObject(m.map[x, y]?.obj ?? '.', new Vector2(x, y), new Vector2(1, 1));
-                    Console.Write(m.map[x, y]?.obj ?? '.');
+                    m.map[x, y] = new MapObject(m.map[x, y]?.obj ?? tile, new Vector2(x, y), new Vector2(1, 1));
+                    Console.Write(m.map[x, y]?.obj ?? tile);
                 }
                 Console.WriteLine();
             }
