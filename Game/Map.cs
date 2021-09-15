@@ -76,15 +76,17 @@ namespace Game
         public string name { get; set; }
         public Vector2 position;
         public Vector2 size;
+        public ConsoleColor color;
 
         Vector2 prev;
         Vector2 dir;
 
-        public MapObject(object obj, Vector2 position = null, Vector2 size = null)
+        public MapObject(object obj, Vector2 position = null, Vector2 size = null, ConsoleColor color = ConsoleColor.White)
         {
             this.obj = obj;
             this.position = position ?? new Vector2();
             this.size = size ?? new Vector2(1,1);
+            this.color = color;
             prev = this.position;
         }
         public void Spawn(Map map, MapObject obj, Vector2 location){
@@ -104,7 +106,9 @@ namespace Game
                         //Thread.Sleep(25);
                         Console.SetCursorPosition(location.x + x, location.y + y);
                         //Thread.Sleep(25);
+                        Console.ForegroundColor = color;
                         Console.Write(obj.obj);
+                        Console.ForegroundColor = ConsoleColor.White;
                     }else{
                         Console.SetCursorPosition(map.size.x, 0);
                         //Console.Write($"  {map.map[location.x + x, location.y + y].obj} {c}");
