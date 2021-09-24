@@ -46,3 +46,5 @@ C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\Game\obj\Debug\net5.0\Ga
 C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\Game\obj\Debug\net5.0\ref\Game.dll
 C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\Game\obj\Debug\net5.0\Game.pdb
 C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\Game\obj\Debug\net5.0\Game.genruntimeconfig.cache
+C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\Game\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\Game\obj\Debug\net5.0\Game.csproj.CopyComplete

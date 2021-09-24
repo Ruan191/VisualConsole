@@ -25,7 +25,7 @@ namespace Game
 
         public static Map Build(Vector2 size)
         {
-            char tile = Debug.enabled ? '.' : ' ';
+            char tile = Settings.DebugEnabled ? '.' : ' ';
 
             Map m = new Map(size);
             for (int y = 0; y < m.size.y; y++)
@@ -88,6 +88,10 @@ namespace Game
             this.size = size ?? new Vector2(1,1);
             this.color = color;
             prev = this.position;
+
+            //Console.WindowWidth = size.x;
+            //Console.WindowHeight = size.y;
+            Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
         }
         public void Spawn(Map map, MapObject obj, Vector2 location){
             MapObject mapObj = null;

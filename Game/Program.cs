@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.IO;
 
 namespace Game
 {
@@ -7,6 +8,8 @@ namespace Game
     {
         static void Main(string[] args)
         {
+            Settings.Initialize();
+            Console.Title = Settings.ConsoleName;
             Console.Clear();
             Console.CursorVisible = false;
             InitializeObjects();
@@ -15,8 +18,8 @@ namespace Game
 
             a.KeyPressed();
 
-            while (true){
-                Thread.Sleep(8);
+            while (Settings.UpdateEnabled){
+                Thread.Sleep(Settings.PauseTimeBetweenUpdates);
                 Play.PerformUpdate();
             }
         }

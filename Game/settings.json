@@ -1,0 +1,7 @@
+{
+    "ConsoleName" : "MyProject",
+    "ControlsEnabled" : true,
+    "UpdateEnabled" : true,
+    "PauseTimeBetweenUpdates" : 1,
+    "DebugEnabled": true
+}
