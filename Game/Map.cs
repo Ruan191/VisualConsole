@@ -1,65 +1,53 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Game
 {
-    public class Map
+    public static class Map
     {
-        public Vector2 size;
-        public MapObject[,] map;
+        public static Vector2 size {get; private set;}
+        public static MapObject[,] map;
 
-        public Map(Vector2 size)
+        public static void Build(Vector2 size)
         {
-            this.size = size;
-            map = new MapObject[size.x, size.y];
-        }
+            Console.Clear();
+            Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
 
-        public Map()
-        {
-            this.size = new Vector2();
-            map = new MapObject[size.x, size.y];
-        }
-
-        public static Map Build(Vector2 size)
-        {
             char tile = Settings.DebugEnabled ? '.' : ' ';
 
-            Map m = new Map(size);
-            for (int y = 0; y < m.size.y; y++)
+            Map.size = size;
+            map = new MapObject[size.x, size.y];
+            for (int y = 0; y < Map.size.y; y++)
             {
-                for (int x = 0; x < m.size.x; x++)
+                for (int x = 0; x < Map.size.x; x++)
                 {
-                    m.map[x, y] = new MapObject(m.map[x, y]?.obj ?? tile, new Vector2(x, y), new Vector2(1, 1));
-                    Console.Write(m.map[x, y]?.obj ?? tile);
+                    map[x, y] = new MapObject(tile, new Vector2(x, y), new Vector2(1, 1));
+                    Console.Write(tile);
                 }
+
                 Console.WriteLine();
             }
-
-            return m;
         }
 
-        public static void Spawn(Map map, MapObject obj, Vector2 location)
+        public static void Spawn(MapObject obj, Vector2 location)
         {
             for (int y = 0; y < obj.size.y; y++)
             {
                 for (int x = 0; x < obj.size.x; x++)
                 {
-                    map.map[location.x + x, location.y + y] = obj;
+                    Map.map[location.x + x, location.y + y] = obj;
                     Console.SetCursorPosition(location.x + x, location.y + y);
                     Console.Write(obj.obj);
                 }
             }
         }
 
-        public static MapObject[] GetAreaInfo(Map map, Vector2 area){
+        public static MapObject[] GetAreaInfo(Vector2 area){
             List<MapObject> objs = new List<MapObject>();
 
             for (int y = 0; y < area.y; y++){
                 for (int x = 0; x < area.x; x++){
-                    objs.Add(map.map[x, y]);
+                    objs.Add(Map.map[x, y]);
                 }
             }
 
@@ -88,25 +76,22 @@ namespace Game
             this.size = size ?? new Vector2(1,1);
             this.color = color;
             prev = this.position;
-
-            //Console.WindowWidth = size.x;
-            //Console.WindowHeight = size.y;
-            Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
         }
-        public void Spawn(Map map, MapObject obj, Vector2 location){
+        public void Spawn(MapObject obj, Vector2 location){
             MapObject mapObj = null;
+
             for (int y = 0; y < obj.size.y; y++)
             {
                 for (int x = 0; x < obj.size.x; x++)
                 {
                     //Console.SetCursorPosition(map.size.x, 0);
                     //Console.Write($"  {map.map[location.x + x, location.y + y].obj} {map.map[location.x + x, location.y + y].position}");
-                    mapObj = map.map[location.x + x, location.y + y];
-                    Debug.Log(map, mapObj.obj.ToString());
+                    mapObj = Map.map[location.x + x, location.y + y];
+                    Debug.Log(mapObj.obj.ToString());
 
                     if (mapObj.obj.Equals('.') || mapObj.obj.Equals(' ') || mapObj.obj.Equals(this.obj)){
                        // Thread.Sleep(25);
-                        map.map[location.x + x, location.y + y] = obj;
+                        Map.map[location.x + x, location.y + y] = obj;
                         //Thread.Sleep(25);
                         Console.SetCursorPosition(location.x + x, location.y + y);
                         //Thread.Sleep(25);
@@ -114,7 +99,7 @@ namespace Game
                         Console.Write(obj.obj);
                         Console.ForegroundColor = ConsoleColor.White;
                     }else{
-                        Console.SetCursorPosition(map.size.x, 0);
+                        Console.SetCursorPosition(Map.size.x, 0);
                         //Console.Write($"  {map.map[location.x + x, location.y + y].obj} {c}");
                         //OnCollision(this, EventArgs.Empty);
                         

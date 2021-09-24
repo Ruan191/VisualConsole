@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Game
 {
     public class Vector2
@@ -15,7 +11,7 @@ namespace Game
             y = 0;
         }
 
-        public Vector2(int x, int y)
+        public Vector2(int x = 0, int y = 0)
         {
             this.x = x;
             this.y = y;
