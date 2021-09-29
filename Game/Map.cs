@@ -31,15 +31,14 @@ namespace Game
 
         public static void Spawn(MapObject obj, Vector2 location)
         {
-            for (int y = 0; y < obj.size.y; y++)
-            {
-                for (int x = 0; x < obj.size.x; x++)
-                {
-                    Map.map[location.x + x, location.y + y] = obj;
-                    Console.SetCursorPosition(location.x + x, location.y + y);
-                    Console.Write(obj.obj);
-                }
-            }
+            obj.position = location;
+            Renderer.Render(obj, location);
+        }
+
+        public static void Spawn(Sprite sprite, Vector2 location)
+        {
+            sprite.position = location;
+            Renderer.Render(sprite, location);
         }
 
         public static MapObject[] GetAreaInfo(Vector2 area){
@@ -60,6 +59,8 @@ namespace Game
 
         public event EventHandler OnCollision;
         public object obj;
+        static uint numOfObj = 0;
+        public readonly uint id;
 
         public string name { get; set; }
         public Vector2 position;
@@ -71,13 +72,19 @@ namespace Game
 
         public MapObject(object obj, Vector2 position = null, Vector2 size = null, ConsoleColor color = ConsoleColor.White)
         {
+            id = ++numOfObj;
             this.obj = obj;
             this.position = position ?? new Vector2();
             this.size = size ?? new Vector2(1,1);
             this.color = color;
             prev = this.position;
         }
-        public void Spawn(MapObject obj, Vector2 location){
+
+        public MapObject(){
+            id = ++numOfObj;
+            size = new Vector2();
+        }
+        /*public void Spawn(MapObject obj, Vector2 location){
             MapObject mapObj = null;
 
             for (int y = 0; y < obj.size.y; y++)
@@ -112,7 +119,7 @@ namespace Game
                 c++;
                 OnHit(mapObj);
             }*/
-        }
+        //}
 
         //To DO
         /*public void Move(Map map, Vector2 dir)

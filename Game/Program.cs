@@ -7,7 +7,6 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            
             Settings.Initialize();
             Console.Title = Settings.ConsoleName;
             Console.CursorVisible = false;
@@ -18,6 +17,12 @@ namespace Game
 
             while (Settings.UpdateEnabled){
                 Thread.Sleep(Settings.PauseTimeBetweenUpdates);
+                if (!Renderer.renderQueue.IsEmpty){
+                    (uint id , Action action) toRun;
+                    if (Renderer.renderQueue.TryDequeue(out toRun)){
+                        toRun.action?.Invoke();
+                    }
+                }
                 Play.PerformUpdate();
             }
         }

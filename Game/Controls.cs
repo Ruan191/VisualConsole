@@ -9,12 +9,14 @@ namespace Game
 
         public static ConsoleKey keyPressed;
         public static async void KeyPressed(){
-            while(true){
-                await Task.Run(() => {
+            await Task.Run(() => {
+                while(true){
                     ConsoleKeyInfo key = Console.ReadKey(true);
                     keyPressed = key.Key;
-                });
-            }
+                    Thread.Sleep(100);
+                    keyPressed = ConsoleKey.Zoom;
+                }
+            });
         }
     }
 }
