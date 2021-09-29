@@ -16,7 +16,6 @@ namespace Game
             Controls.KeyPressed();
 
             while (Settings.UpdateEnabled){
-                Thread.Sleep(Settings.PauseTimeBetweenUpdates);
                 if (!Renderer.renderQueue.IsEmpty){
                     (uint id , Action action) toRun;
                     if (Renderer.renderQueue.TryDequeue(out toRun)){
@@ -24,6 +23,8 @@ namespace Game
                     }
                 }
                 Play.PerformUpdate();
+                Thread.Sleep(Settings.PauseTimeBetweenUpdates);
+                Play.PerformLateUpdate();
             }
         }
 

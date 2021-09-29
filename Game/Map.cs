@@ -65,7 +65,7 @@ namespace Game
         public string name { get; set; }
         public Vector2 position;
         public Vector2 size;
-        public ConsoleColor color;
+        public ConsoleColor color = ConsoleColor.Black;
 
         Vector2 prev;
         Vector2 dir;

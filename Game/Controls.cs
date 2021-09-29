@@ -4,8 +4,12 @@ using System.Threading.Tasks;
 
 namespace Game
 {
-    public static class Controls
+    public class Controls
     {
+        public static event EventHandler<KeyPressedHandler> OnKeyPressed;
+        public class KeyPressedHandler : EventArgs{
+            public ConsoleKey keyPressed;
+        }
 
         public static ConsoleKey keyPressed;
         public static async void KeyPressed(){
@@ -13,8 +17,14 @@ namespace Game
                 while(true){
                     ConsoleKeyInfo key = Console.ReadKey(true);
                     keyPressed = key.Key;
-                    Thread.Sleep(100);
-                    keyPressed = ConsoleKey.Zoom;
+
+                    if (keyPressed != ConsoleKey.NoName){
+                        OnKeyPressed.Invoke(null, new KeyPressedHandler(){keyPressed = keyPressed});
+                    }
+
+                    keyPressed = ConsoleKey.NoName;
+                    //Thread.Sleep(Settings.PauseTimeBetweenUpdates);
+                    //keyPressed = ConsoleKey.Zoom;
                 }
             });
         }

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 
@@ -5,9 +6,9 @@ namespace Game{
     public class Sprite : MapObject{
         public char[,] content;
         
-        public Sprite(string sprite, Vector2 position){
+        public Sprite(string sprite, Vector2 position, ConsoleColor color = ConsoleColor.Black){
             string[] linesContent = File.ReadAllLines(sprite);
-
+            this.color = color;
             size = new Vector2(linesContent.Max<string>().Length, linesContent.Length);
             this.position = position;
             content = new char[size.x, size.y];

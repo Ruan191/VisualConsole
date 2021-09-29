@@ -7,6 +7,7 @@ namespace Game{
         public Example(){
             Start += _Start;
             Update += _Update;
+            Controls.OnKeyPressed += _OnKeyPressed;
         }
         Animation animation;
         void _Start(object sender, EventArgs e){
@@ -17,6 +18,7 @@ namespace Game{
             //Map.Spawn(sprite, new Vector2(5, 5));
             animation = new Animation("", new Vector2(), new Vector2(25, 7));
             animation.pausesBetweenFrames = 100;
+            animation.color = ConsoleColor.Red;
             animation.Play();
             //Action<uint> a = Renderer.renderQueue.Dequeue();
             
@@ -24,7 +26,14 @@ namespace Game{
         }
         int count = 0;
         void _Update(object sender, EventArgs e){
-            Debug.Log(Controls.keyPressed.ToString(), new Vector2(5,0));
+            //Debug.Log(Controls.keyPressed.ToString(), new Vector2(5,0));
+        }
+
+        void _OnKeyPressed(object sender, Controls.KeyPressedHandler e){
+            if (e.keyPressed == ConsoleKey.A){
+                Debug.Log(count++.ToString(), new Vector2());
+                Debug.Log(count++.ToString(), new Vector2(0, 1));
+            }
         }
 
     }

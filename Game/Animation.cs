@@ -13,15 +13,15 @@ namespace Game
         public bool stopped;
         public int pausesBetweenFrames = 2;
 
-        public Animation(string folderName, Vector2 position, Vector2 size){
+        public Animation(string folderName, Vector2 position, Vector2 size, ConsoleColor color = ConsoleColor.Black){
             string[] fileNames = FileManager.GetAllFileNames("\\sprites\\animations\\" + folderName);
-
+            this.color = color;
             this.position = position;
             this.size = size;
 
             foreach (string fileName in fileNames)
             {
-                frames.Add(new Sprite(fileName, position));
+                frames.Add(new Sprite(fileName, position, color));
             }
         }
 
