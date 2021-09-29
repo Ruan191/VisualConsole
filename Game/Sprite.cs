@@ -7,7 +7,7 @@ namespace Game{
         public char[,] content;
         
         public Sprite(string sprite, Vector2 position, ConsoleColor color = ConsoleColor.Black){
-            string[] linesContent = File.ReadAllLines(sprite);
+            string[] linesContent = FileManager.ReadLines("\\sprites\\" + sprite);
             this.color = color;
             size = new Vector2(linesContent.Max<string>().Length, linesContent.Length);
             this.position = position;

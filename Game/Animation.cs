@@ -21,7 +21,7 @@ namespace Game
 
             foreach (string fileName in fileNames)
             {
-                frames.Add(new Sprite(fileName, position, color));
+                frames.Add(new Sprite($"animations\\{folderName}\\" + fileName.Split('\\').Last(), position, color));
             }
         }
 

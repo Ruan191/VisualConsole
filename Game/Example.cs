@@ -13,27 +13,21 @@ namespace Game{
         void _Start(object sender, EventArgs e){
             Map.Build(new Vector2(60, 50));
             //MapObject player = new MapObject(Timer.currentTime);//, new Vector2(Map.size.x / 2, Map.size.y / 2), new Vector2(3,5), ConsoleColor.Red);
-            //Sprite sprite = new Sprite("wave", new Vector2(), new Vector2(25, 7));
+            //Sprite sprite = new Sprite("wave.txt", new Vector2());
             //Map.Spawn(player, new Vector2(((Map.size.x / 2) - (player.size.x / 2)) - 1, ((Map.size.y / 2) - (player.size.y / 2)) - 1));
             //Map.Spawn(sprite, new Vector2(5, 5));
-            animation = new Animation("", new Vector2(), new Vector2(25, 7));
+            animation = new Animation("wave", new Vector2(), new Vector2(25, 7), ConsoleColor.DarkRed);
             animation.pausesBetweenFrames = 100;
             animation.color = ConsoleColor.Red;
             animation.Play();
-            //Action<uint> a = Renderer.renderQueue.Dequeue();
-            
-            
         }
-        int count = 0;
+
         void _Update(object sender, EventArgs e){
             //Debug.Log(Controls.keyPressed.ToString(), new Vector2(5,0));
         }
 
         void _OnKeyPressed(object sender, Controls.KeyPressedHandler e){
-            if (e.keyPressed == ConsoleKey.A){
-                Debug.Log(count++.ToString(), new Vector2());
-                Debug.Log(count++.ToString(), new Vector2(0, 1));
-            }
+            Debug.Log("KeyPressed = " + e.keyPressed.ToString(), new Vector2());
         }
 
     }

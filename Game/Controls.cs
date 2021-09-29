@@ -23,8 +23,6 @@ namespace Game
                     }
 
                     keyPressed = ConsoleKey.NoName;
-                    //Thread.Sleep(Settings.PauseTimeBetweenUpdates);
-                    //keyPressed = ConsoleKey.Zoom;
                 }
             });
         }
