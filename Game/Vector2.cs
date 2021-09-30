@@ -23,9 +23,29 @@ namespace Game
 
         public override string ToString() => $"({x}, {y})";
 
-        public void Up() => y++;
-        public void Right() => x++;
-        public void Down() => y--;
-        public void Left() => x--;
+        public static Vector2 Center() => new Vector2(Map.size.x / 2, Map.size.y / 2);
+        public static Vector2 TopLeft() => new Vector2();
+        public static Vector2 TopRight() => new Vector2(Map.size.x - 1, 0);
+        public static Vector2 BottomLeft() => new Vector2(0, Map.size.y - 1);
+        public static Vector2 BottomRight() => new Vector2(Map.size.x - 1, Map.size.y - 1);
+        public static Vector2 operator +(Vector2 input1, Vector2 input2){
+            return new Vector2(input1.x + input2.x, input1.y + input2.y);
+        }
+
+        public static Vector2 operator -(Vector2 input1, Vector2 input2){
+            return new Vector2(input1.x - input2.x, input1.y - input2.y);
+        }
+
+        public static Vector2 operator *(Vector2 input1, Vector2 input2){
+            return new Vector2(input1.x * input2.x, input1.y * input2.y);
+        }
+
+        public static Vector2 operator /(Vector2 input1, Vector2 input2){
+            return new Vector2(input1.x / input2.x, input1.y / input2.y);
+        }
+
+        public static Vector2 operator /(Vector2 input1, int input2){
+            return new Vector2(input1.x / input2, input1.y / input2);
+        }
     }
 }

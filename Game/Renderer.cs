@@ -50,6 +50,14 @@ namespace Game{
             Console.Write("-> " + content);
         }
 
+        public static void TextRender(TextBox text, Vector2 position){
+            Map.map[position.x, position.y] = text;
+            Console.SetCursorPosition(position.x, position.y);
+            Console.ForegroundColor = text.color;
+            Console.Write(text.text);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
         public static void RequestRender((uint, Action) render){
             foreach (var item in renderQueue){
                 if (item.Item1.Equals(render.Item1)){
@@ -58,7 +66,6 @@ namespace Game{
             }
             
             renderQueue.Enqueue(render);
-
         }
 
     }

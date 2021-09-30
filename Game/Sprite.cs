@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 
 namespace Game{
-    public class Sprite : MapObject{
+    public class Sprite : MapObject, IRenderable{
         public char[,] content;
         public int maxWidth {get; private set;}
         public int maxHeight {get; private set;}
