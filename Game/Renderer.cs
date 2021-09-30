@@ -22,13 +22,20 @@ namespace Game{
 
         public static void Render(Sprite sprite, Vector2 location)
         {
+            char currentChar;
+
             for (int y = 0; y < sprite.size.y; y++)
             {
                 for (int x = 0; x < sprite.size.x; x++)
                 {
-                    char currentChar = sprite.content[x, y];
-                    Map.map[location.x + x, location.y + y] = sprite;
-                    Console.SetCursorPosition(location.x + x, location.y + y);
+                    if (x <= sprite.maxWidth - 1 && y <= sprite.maxHeight - 1){
+                        currentChar = sprite.content[x, y];
+                        Map.map[location.x + x, location.y + y] = sprite;
+                        Console.SetCursorPosition(location.x + x, location.y + y);
+                    }
+                    else
+                        currentChar = Map.background;
+
                     Console.ForegroundColor = sprite.color;
                     Console.Write(currentChar);
                     Console.ForegroundColor = ConsoleColor.White;

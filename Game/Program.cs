@@ -22,6 +22,7 @@ namespace Game
                         toRun.action?.Invoke();
                     }
                 }
+                
                 Play.PerformUpdate();
                 Thread.Sleep(Settings.PauseTimeBetweenUpdates);
                 Play.PerformLateUpdate();

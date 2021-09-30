@@ -3,5 +3,5 @@
     "ControlsEnabled" : true,
     "UpdateEnabled" : true,
     "PauseTimeBetweenUpdates" : 1,
-    "DebugEnabled": false
+    "DebugEnabled": true
 }

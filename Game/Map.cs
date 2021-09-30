@@ -7,13 +7,14 @@ namespace Game
     {
         public static Vector2 size {get; private set;}
         public static MapObject[,] map;
+        public static char background = ' ';
 
         public static void Build(Vector2 size)
         {
             Console.Clear();
             Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
 
-            char tile = Settings.DebugEnabled ? '.' : ' ';
+            char tile = Settings.DebugEnabled ? '.' : background;
 
             Map.size = size;
             map = new MapObject[size.x, size.y];

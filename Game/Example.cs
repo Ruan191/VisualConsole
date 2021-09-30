@@ -12,12 +12,15 @@ namespace Game{
         Animation animation;
         void _Start(object sender, EventArgs e){
             Map.Build(new Vector2(60, 50));
-            //MapObject player = new MapObject(Timer.currentTime);//, new Vector2(Map.size.x / 2, Map.size.y / 2), new Vector2(3,5), ConsoleColor.Red);
-            //Sprite sprite = new Sprite("wave.txt", new Vector2());
-            //Map.Spawn(player, new Vector2(((Map.size.x / 2) - (player.size.x / 2)) - 1, ((Map.size.y / 2) - (player.size.y / 2)) - 1));
-            //Map.Spawn(sprite, new Vector2(5, 5));
-            animation = new Animation("wave", new Vector2(), new Vector2(25, 7), ConsoleColor.DarkRed);
-            animation.pausesBetweenFrames = 100;
+            
+            MapObject topLeftText = new MapObject("Thank you for using BetterConsole!");
+            Map.Spawn(topLeftText, new Vector2());
+
+            MapObject topRightText = new MapObject("If you see the waves moving then it means the framwork is functional");
+            Map.Spawn(topRightText, new Vector2(Map.size.x - 1, 0));
+
+            animation = new Animation("explosion", new Vector2((Map.size.x / 2) + 5, 10), new Vector2(20,20),ConsoleColor.DarkCyan);
+            animation.pausesBetweenFrames = 1000;
             animation.color = ConsoleColor.Red;
             animation.Play();
         }
@@ -26,8 +29,11 @@ namespace Game{
             //Debug.Log(Controls.keyPressed.ToString(), new Vector2(5,0));
         }
 
+        //string t = "";
         void _OnKeyPressed(object sender, Controls.KeyPressedHandler e){
             Debug.Log("KeyPressed = " + e.keyPressed.ToString(), new Vector2());
+            MapObject txt = new MapObject( e.keyPressed.GetHashCode());
+            Map.Spawn(txt, new Vector2(0, 5));
         }
 
     }
