@@ -5,4 +5,4 @@
 
 Requires:
 * dotnet5
-* Newtonsoft.Json
+* Newtonsoft.Json (dotnet add package Newtonsoft.Json)
