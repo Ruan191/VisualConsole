@@ -12,6 +12,7 @@ namespace Game{
 
         public TextBox(Vector2 position){
             this.position = position;
+            color = ConsoleColor.White;
             textReads.Add(this);
 
             if (textReads.Count == 1){

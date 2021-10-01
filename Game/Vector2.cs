@@ -47,5 +47,8 @@ namespace Game
         public static Vector2 operator /(Vector2 input1, int input2){
             return new Vector2(input1.x / input2, input1.y / input2);
         }
+        public static Vector2 operator *(Vector2 input1, int input2){
+            return new Vector2(input1.x * input2, input1.y * input2);
+        }
     }
 }
