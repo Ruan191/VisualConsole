@@ -42,5 +42,27 @@ namespace VisualConsole{
                 }
             }
         }
+
+        public new void Render(Action action = null, Vector2 chosenPos = null){
+            char currentChar;
+
+            for (int y = 0; y < size.y; y++)
+            {
+                for (int x = 0; x < size.x; x++)
+                {
+                    if (x <= maxWidth - 1 && y <= maxHeight - 1){
+                        currentChar = content[x, y];
+                        Map.map[position.x + x, position.y + y] = this;
+                        Console.SetCursorPosition(position.x + x, position.y + y);
+                    }
+                    else
+                        currentChar = Map.background;
+
+                    Console.ForegroundColor = color;
+                    Console.Write(currentChar);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+        }
     }
 }

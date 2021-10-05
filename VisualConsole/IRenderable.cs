@@ -1,9 +1,7 @@
-using Newtonsoft.Json;
+using System;
 
 namespace VisualConsole{
     public interface IRenderable{
-        public void Render(Vector2 at){
-
-        }
+        public void Render(Action action = null, Vector2 chosenPos = null);
     }
 }

@@ -35,7 +35,8 @@ namespace VisualConsole
 
                     CKPressed = ConsoleKey.NoName;
                     keyPressed = ' ';
-                    Thread.Sleep(50);
+                    
+                    Task.Delay(50).Wait();
                 }
             });
         }

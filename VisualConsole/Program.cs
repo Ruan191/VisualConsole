@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace VisualConsole
 {
@@ -17,14 +18,14 @@ namespace VisualConsole
 
             while (Settings.UpdateEnabled){
                 if (!Renderer.renderQueue.IsEmpty){
-                    (uint id , Action action) toRun;
+                    (uint id , IRenderable action) toRun;
                     if (Renderer.renderQueue.TryDequeue(out toRun)){
-                        toRun.action?.Invoke();
+                        toRun.action.Render();
                     }
                 }
                 
                 Play.PerformUpdate();
-                Thread.Sleep(Settings.PauseTimeBetweenUpdates);
+                Task.Delay(Settings.PauseTimeBetweenUpdates).Wait();
                 Play.PerformLateUpdate();
             }
         }

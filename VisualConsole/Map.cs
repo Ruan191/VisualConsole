@@ -33,13 +33,13 @@ namespace VisualConsole
         public static void Spawn(MapObject obj, Vector2 location)
         {
             obj.position = location;
-            Renderer.Render(obj, location);
+            obj.Render();
         }
 
         public static void Spawn(Sprite sprite, Vector2 location)
         {
             sprite.position = location;
-            Renderer.Render(sprite, location);
+            sprite.Render();
         }
 
         public static MapObject[] GetAreaInfo(Vector2 area){
@@ -55,7 +55,7 @@ namespace VisualConsole
         }
     }
 
-    public class MapObject
+    public class MapObject : IRenderable
     {
 
         public event EventHandler OnCollision;
@@ -84,6 +84,19 @@ namespace VisualConsole
         public MapObject(){
             id = ++numOfObj;
             size = new Vector2();
+        }
+
+        public void Render(Action action = null, Vector2 chosenPos = null){
+            for (int y = 0; y < size.y; y++){
+                for (int x = 0; x < size.x; x++)
+                {
+                    Map.map[position.x + x, position.y + y] = this;
+                    Console.SetCursorPosition(position.x + x, position.y + y);
+                    Console.ForegroundColor = color;
+                    Console.Write(obj);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
         }
     }
 }

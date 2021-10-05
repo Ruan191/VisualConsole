@@ -1,7 +1,8 @@
 using System;
 
 namespace VisualConsole{
-    class Debug{
+    class Debug
+    {
         static uint numOfRequests = 0;
         static int lastYPosition = 0;
         /// <summary>
@@ -11,17 +12,38 @@ namespace VisualConsole{
         /// <param name="position">Determines where the printed message should go in the Debug space. If left empty then the message will be printed on a new line</param>
         public static void Log(string content, Vector2 position = null)
         {
+            DebugMessage debugMessage;
+
             if (Settings.DebugEnabled){
                 if (lastYPosition >= Console.BufferHeight - 1){
                     lastYPosition = 0;
                 }
 
-                Renderer.RequestRender((9999 + ++numOfRequests, () => {
-                    if (position == null)
-                        Renderer.DebugRender(content, new Vector2(0, lastYPosition++));
-                    else
-                        Renderer.DebugRender(content, position);
-                }));
+                //Renderer.RequestRender((9999 + ++numOfRequests, () => {
+                if (position == null)
+                    debugMessage = new DebugMessage(content, new Vector2(0, lastYPosition++));
+                else
+                    debugMessage = new DebugMessage(content, position);
+                //}));
+
+                Renderer.RequestRender((9999 + ++numOfRequests, debugMessage));
+            }
+        }
+
+        class DebugMessage : IRenderable{
+            public object content;
+            Vector2 position;
+
+            public DebugMessage(string content, Vector2 position){
+                this.content = content;
+                this.position = position;
+            }
+
+            public void Render(Action action = null, Vector2 chosenPos = null){
+                Vector2 logPosition = chosenPos ?? new Vector2();
+                Console.SetCursorPosition((Map.size.x + 5) + logPosition.x, 0 + logPosition.y);
+
+                Console.Write("-> " + content);
             }
         }
     }

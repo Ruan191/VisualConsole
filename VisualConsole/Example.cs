@@ -45,6 +45,7 @@ namespace VisualConsole{
         void _OnKeyPressed(object sender, Controls.KeyPressedHandler e){
 
         }
+        
         void _OnCKPressed(object sender, Controls.CKPressedHandler e){
             if (e.keyPressed == ConsoleKey.Enter){
                 if (TextBox.currentSelectedTextRead.text.ToString() == "Enter"){

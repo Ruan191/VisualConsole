@@ -2,8 +2,10 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 
-namespace VisualConsole{
-    class TextBox : MapObject{
+namespace VisualConsole
+{
+    class TextBox : MapObject, IRenderable
+    {
         public StringBuilder text = new StringBuilder();
         public int maxCharAllowed = 15;
         public bool selected;
@@ -42,9 +44,8 @@ namespace VisualConsole{
                 
                 if (text.Length > 0){
                     MapObject clear = new MapObject(Map.background, new Vector2(position.x + text.Length - 1, position.y));
-                    Renderer.RequestRender((clear.id, () => {
-                        Renderer.Render(clear, clear.position);
-                    }));
+                    clear.Render();
+                    Renderer.RequestRender((clear.id, clear));
 
                     text.Remove(text.Length - 1, 1);
                 }
@@ -53,7 +54,15 @@ namespace VisualConsole{
                     text.Append(e.keyPressed);
             }
 
-            Renderer.RequestRender((this.id, () => Renderer.TextRender(this, position)));
+            Renderer.RequestRender((this.id, this));
+        }
+
+        public new void Render(Action action = null, Vector2 chosenPos = null){
+            Map.map[position.x, position.y] = this;
+            Console.SetCursorPosition(position.x, position.y);
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

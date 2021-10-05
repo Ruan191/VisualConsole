@@ -48,22 +48,23 @@ namespace VisualConsole
             Task.Run(() => {
                 while (loopEnabled && !stopped){
                     foreach (Sprite frame in this.frames.ToArray()){
-                        Renderer.RequestRender((frame.id, () => {
-                            if (frame.maxWidth > biggestWidth){
-                                biggestWidth = frame.maxWidth;
-                            }
+                        if (frame.maxWidth > biggestWidth){
+                            biggestWidth = frame.maxWidth;
+                        }
+                            
+                        if (frame.maxHeight > biggestHeight){
+                            biggestHeight = frame.maxHeight;
+                        }
 
-                            if (frame.maxHeight > biggestHeight){
-                                biggestHeight = frame.maxHeight;
-                            }
+                        frame.size.x = biggestWidth;
+                        frame.size.y = biggestHeight;
+                        Renderer.RequestRender((frame.id, frame));/* => {
 
-                            frame.size.x = biggestWidth;
-                            frame.size.y = biggestHeight;
 
-                            Renderer.Render(frame, position);
-                        }));
-
-                        Thread.Sleep(pausesBetweenFrames);
+                            //Renderer.Render(frame, position);
+                        }));*/
+                        
+                        Task.Delay(pausesBetweenFrames).Wait();
                     }
                 }
             });
