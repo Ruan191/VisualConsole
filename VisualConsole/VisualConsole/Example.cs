@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace VisualConsole
 {
@@ -27,7 +28,7 @@ namespace VisualConsole
             //Console.WindowHeight = Map.size.y;
 
             //Creates text to be spawned in the Map and sets it to be at the center
-            MapObject middleText = new MapObject("Type Enter to end the program");
+            MapObject middleText = new MapObject("Press Enter to end the program");
             Vector2 middleTextCenter = Vector2.Center() - new Vector2(middleText.obj.ToString().Length / 2, 0);
             Map.Spawn(middleText, middleTextCenter);
 

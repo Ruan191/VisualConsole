@@ -8,11 +8,11 @@ namespace VisualConsole
 {
     static class Settings
     {
-        public static string ConsoleName { get; set; }
-        public static bool ControlsEnabled { get; set; }
-        public static bool UpdateEnabled { get; set; }
-        public static int PauseTimeBetweenUpdates { get; set; }
-        public static bool DebugEnabled { get; set; }
+        public static string ConsoleName { get; set; } = "MyProject";
+        public static bool ControlsEnabled { get; set; } = true;
+        public static bool UpdateEnabled { get; set; } = true;
+        public static int PauseTimeBetweenUpdates { get; set; } = 15;
+        public static bool DebugEnabled { get; set; } = false;
 
         public static void Initialize()
         {

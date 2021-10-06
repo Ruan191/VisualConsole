@@ -7,6 +7,7 @@ namespace VisualConsole
     {
         static void Main(string[] args)
         {
+            FileManager.AttemptCopyOfProjectFiles();
             Settings.Initialize();
             Console.Title = Settings.ConsoleName;
             Console.CursorVisible = false;
