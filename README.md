@@ -6,3 +6,5 @@
 Requires:
 * dotnet5
 * Newtonsoft.Json
+
+NOTE: Make sure that the sprite foler and settings.json is in the excuting application directory before running the application
