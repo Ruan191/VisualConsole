@@ -1,6 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace VisualConsole{
+namespace VisualConsole
+{
     class Debug
     {
         static uint numOfRequests = 0;
@@ -14,8 +19,10 @@ namespace VisualConsole{
         {
             DebugMessage debugMessage;
 
-            if (Settings.DebugEnabled){
-                if (lastYPosition >= Console.BufferHeight - 1){
+            if (Settings.DebugEnabled)
+            {
+                if (lastYPosition >= Console.BufferHeight - 1)
+                {
                     lastYPosition = 0;
                 }
 
@@ -30,16 +37,19 @@ namespace VisualConsole{
             }
         }
 
-        class DebugMessage : IRenderable{
+        class DebugMessage : IRenderable
+        {
             public object content;
             Vector2 position;
 
-            public DebugMessage(string content, Vector2 position){
+            public DebugMessage(string content, Vector2 position)
+            {
                 this.content = content;
                 this.position = position;
             }
 
-            public void Render(Action action = null, Vector2 chosenPos = null){
+            public void Render(Action action = null, Vector2 chosenPos = null)
+            {
                 Vector2 logPosition = chosenPos ?? new Vector2();
                 Console.SetCursorPosition((Map.size.x + 5) + logPosition.x, 0 + logPosition.y);
 

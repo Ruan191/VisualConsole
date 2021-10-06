@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace VisualConsole
 {
     public static class Map
     {
-        public static Vector2 size {get; private set;}
+        public static Vector2 size { get; private set; }
         public static MapObject[,] map;
         public static char background = ' ';
 
@@ -42,11 +42,14 @@ namespace VisualConsole
             sprite.Render();
         }
 
-        public static MapObject[] GetAreaInfo(Vector2 area){
+        public static MapObject[] GetAreaInfo(Vector2 area)
+        {
             List<MapObject> objs = new List<MapObject>();
 
-            for (int y = 0; y < area.y; y++){
-                for (int x = 0; x < area.x; x++){
+            for (int y = 0; y < area.y; y++)
+            {
+                for (int x = 0; x < area.x; x++)
+                {
                     objs.Add(Map.map[x, y]);
                 }
             }
@@ -76,18 +79,21 @@ namespace VisualConsole
             id = ++numOfObj;
             this.obj = obj;
             this.position = position ?? new Vector2();
-            this.size = size ?? new Vector2(1,1);
+            this.size = size ?? new Vector2(1, 1);
             this.color = color;
             prev = this.position;
         }
 
-        public MapObject(){
+        public MapObject()
+        {
             id = ++numOfObj;
             size = new Vector2();
         }
 
-        public void Render(Action action = null, Vector2 chosenPos = null){
-            for (int y = 0; y < size.y; y++){
+        public void Render(Action action = null, Vector2 chosenPos = null)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
                 for (int x = 0; x < size.x; x++)
                 {
                     Map.map[position.x + x, position.y + y] = this;

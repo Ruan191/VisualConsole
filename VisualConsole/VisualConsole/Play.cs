@@ -1,4 +1,8 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace VisualConsole
 {
@@ -8,20 +12,26 @@ namespace VisualConsole
         protected static event EventHandler Update;
         protected static event EventHandler LateUpdate;
 
-        public static void PerformStart(){
-            if (Start != null){
+        public static void PerformStart()
+        {
+            if (Start != null)
+            {
                 Start.Invoke(null, EventArgs.Empty);
             }
         }
 
-        public static void PerformUpdate(){
-            if (Update != null){
+        public static void PerformUpdate()
+        {
+            if (Update != null)
+            {
                 Update.Invoke(null, EventArgs.Empty);
             }
         }
 
-        public static void PerformLateUpdate(){
-            if (LateUpdate != null){
+        public static void PerformLateUpdate()
+        {
+            if (LateUpdate != null)
+            {
                 LateUpdate.Invoke(null, EventArgs.Empty);
             }
         }

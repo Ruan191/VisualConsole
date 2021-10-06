@@ -1,6 +1,6 @@
-using System;
-using System.Text;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace VisualConsole
 {
@@ -12,17 +12,20 @@ namespace VisualConsole
         public static List<TextBox> textReads = new List<TextBox>();
         public static TextBox currentSelectedTextRead;
 
-        public TextBox(Vector2 position){
+        public TextBox(Vector2 position)
+        {
             this.position = position;
             color = ConsoleColor.White;
             textReads.Add(this);
 
-            if (textReads.Count == 1){
+            if (textReads.Count == 1)
+            {
                 currentSelectedTextRead = this;
             }
         }
 
-        public static void Select(TextBox textRead){
+        public static void Select(TextBox textRead)
+        {
             currentSelectedTextRead.selected = false;
             Controls.OnKeyPressed -= currentSelectedTextRead._OnKeyPressed;
             textRead.selected = true;
@@ -30,7 +33,8 @@ namespace VisualConsole
             Controls.OnKeyPressed += textRead._OnKeyPressed;
         }
 
-        public static void SelectByIndex(int index){
+        public static void SelectByIndex(int index)
+        {
             currentSelectedTextRead.selected = false;
             Controls.OnKeyPressed -= currentSelectedTextRead._OnKeyPressed;
             textReads[index].selected = true;
@@ -38,18 +42,23 @@ namespace VisualConsole
             Controls.OnKeyPressed += textReads[index]._OnKeyPressed;
         }
 
-        void _OnKeyPressed(object sender, Controls.KeyPressedHandler e){
+        void _OnKeyPressed(object sender, Controls.KeyPressedHandler e)
+        {
 
-            if ((int)e.keyPressed == 8){
-                
-                if (text.Length > 0){
+            if ((int)e.keyPressed == 8)
+            {
+
+                if (text.Length > 0)
+                {
                     MapObject clear = new MapObject(Map.background, new Vector2(position.x + text.Length - 1, position.y));
                     clear.Render();
                     Renderer.RequestRender((clear.id, clear));
 
                     text.Remove(text.Length - 1, 1);
                 }
-            }else{
+            }
+            else
+            {
                 if (text.Length < maxCharAllowed && e.keyPressed != 13)
                     text.Append(e.keyPressed);
             }
@@ -57,7 +66,8 @@ namespace VisualConsole
             Renderer.RequestRender((this.id, this));
         }
 
-        public new void Render(Action action = null, Vector2 chosenPos = null){
+        public new void Render(Action action = null, Vector2 chosenPos = null)
+        {
             Map.map[position.x, position.y] = this;
             Console.SetCursorPosition(position.x, position.y);
             Console.ForegroundColor = color;

@@ -1,23 +1,30 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace VisualConsole{
+namespace VisualConsole
+{
     class Example : Play
     {
         //Example code on how to use the framework
 
-        public Example(){
+        public Example()
+        {
             Start += _Start;
             Update += _Update;
             Controls.OnKeyPressed += _OnKeyPressed;
             Controls.OnCKPressed += _OnCKPressed;
         }
 
-        void _Start(object sender, EventArgs e){
+        void _Start(object sender, EventArgs e)
+        {
             //Spawns the 2D map
             Map.Build(new Vector2(100, 50));
 
-            Console.WindowWidth = Map.size.x;
-            Console.WindowHeight = Map.size.y;
+            Console.SetWindowSize(Map.size.x, Map.size.y); //= Map.size.x;
+            //Console.WindowHeight = Map.size.y;
 
             //Creates text to be spawned in the Map and sets it to be at the center
             MapObject middleText = new MapObject("Type Enter to end the program");
@@ -39,16 +46,21 @@ namespace VisualConsole{
             TextBox.Select(textBox);
         }
 
-        void _Update(object sender, EventArgs e){
+        void _Update(object sender, EventArgs e)
+        {
         }
 
-        void _OnKeyPressed(object sender, Controls.KeyPressedHandler e){
+        void _OnKeyPressed(object sender, Controls.KeyPressedHandler e)
+        {
 
         }
-        
-        void _OnCKPressed(object sender, Controls.CKPressedHandler e){
-            if (e.keyPressed == ConsoleKey.Enter){
-                if (TextBox.currentSelectedTextRead.text.ToString() == "Enter"){
+
+        void _OnCKPressed(object sender, Controls.CKPressedHandler e)
+        {
+            if (e.keyPressed == ConsoleKey.Enter)
+            {
+                if (TextBox.currentSelectedTextRead.text.ToString() == "Enter")
+                {
                     System.Environment.Exit(1);
                 }
             }
