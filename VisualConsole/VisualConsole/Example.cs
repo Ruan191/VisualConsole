@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,32 +20,41 @@ namespace VisualConsole
             Controls.OnCKPressed += _OnCKPressed;
         }
 
+        Animation animation;
+        Animation animation2;
+        Animation animation3;
+        Animation animation4;
+        SoundPlayer soundPlayer;
+
+        Sprite sprite;
+        int animationSpeed = 30;
+
         void _Start(object sender, EventArgs e)
         {
-            //Spawns the 2D map
             Map.Build(new Vector2(100, 50));
+            sprite = new Sprite("BA75.txt", new Vector2());
 
-            Console.SetWindowSize(Map.size.x, Map.size.y); //= Map.size.x;
-            //Console.WindowHeight = Map.size.y;
+            animation = new Animation("badapple", new Vector2(), ConsoleColor.Red);
+            animation.pausesBetweenFrames = animationSpeed;
 
-            //Creates text to be spawned in the Map and sets it to be at the center
-            MapObject middleText = new MapObject("Press Enter to end the program");
-            Vector2 middleTextCenter = Vector2.Center() - new Vector2(middleText.obj.ToString().Length / 2, 0);
-            Map.Spawn(middleText, middleTextCenter);
+            animation2 = new Animation("badapple", new Vector2(sprite.size.x, 0), ConsoleColor.Blue);
+            animation2.pausesBetweenFrames = animationSpeed;
 
-            Animation animation = new Animation("explosion", (new Vector2((middleTextCenter.x / 2) + 2, middleTextCenter.y - 2)), ConsoleColor.DarkCyan);
-            animation.pausesBetweenFrames = 1000;
-            animation.color = ConsoleColor.Red;
-            animation.Play();
+            animation3 = new Animation("badapple", new Vector2(0, sprite.size.y), ConsoleColor.Green);
+            animation3.pausesBetweenFrames = animationSpeed;
 
-            Animation animation2 = new Animation("explosion", (new Vector2(middleTextCenter.x * 2, middleTextCenter.y - 2)), ConsoleColor.Red);
-            animation2.pausesBetweenFrames = 1000;
-            animation2.Play();
+            animation4 = new Animation("badapple", new Vector2(sprite.size.x, sprite.size.y), ConsoleColor.Yellow);
+            animation4.pausesBetweenFrames = animationSpeed;
 
-            TextBox textBox = new TextBox(middleTextCenter + new Vector2(0, 1));
-            textBox.maxCharAllowed = 5;
-            textBox.color = ConsoleColor.DarkGreen;
-            TextBox.Select(textBox);
+            if (OperatingSystem.IsWindows())
+            {
+                soundPlayer = new SoundPlayer("BadApple.wav");
+                soundPlayer.Load();
+            }
+
+
+            Console.SetWindowSize(sprite.size.x * 2, sprite.size.y * 2);
+            Console.SetWindowPosition(0, 0);
         }
 
         void _Update(object sender, EventArgs e)
@@ -53,17 +63,22 @@ namespace VisualConsole
 
         void _OnKeyPressed(object sender, Controls.KeyPressedHandler e)
         {
-
+            
         }
 
         void _OnCKPressed(object sender, Controls.CKPressedHandler e)
         {
             if (e.keyPressed == ConsoleKey.Enter)
             {
-                if (TextBox.currentSelectedTextRead.text.ToString() == "Enter")
-                {
-                    System.Environment.Exit(1);
-                }
+                soundPlayer.PlayLooping();
+
+                animation.Play();
+
+                animation2.Play();
+
+                animation3.Play();
+
+                animation4.Play();
             }
         }
 

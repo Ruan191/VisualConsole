@@ -2,6 +2,6 @@
     "ConsoleName" : "MyProject",
     "ControlsEnabled" : true,
     "UpdateEnabled" : true,
-    "PauseTimeBetweenUpdates" : 1,
+    "PauseTimeBetweenUpdates" : 0,
     "DebugEnabled": false
 }

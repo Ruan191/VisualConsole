@@ -10,6 +10,7 @@ namespace VisualConsole
         public static string ReadAllText(string path) => File.ReadAllText(workingDir + "\\" + path);
         public static string[] ReadLines(string path) => File.ReadAllLines(workingDir + "\\" + path);
         public static string[] GetAllFileNames(string path) => Directory.GetFiles(workingDir + "\\" + path);
+        //public static string GetFileName(string path) => File.
 
         public static string projectDir = "";
 
@@ -18,6 +19,7 @@ namespace VisualConsole
             try
             {
                 projectDir = Directory.GetParent(workingDir).Parent.Parent.ToString();
+                Directory.Delete($"{workingDir}\\sprites", true);
                 DirectoryCopy($"{projectDir}\\sprites", $"{workingDir}\\sprites", true);
                 File.Copy($"{projectDir}\\settings.json", $"{workingDir}\\settings.json");
             }
