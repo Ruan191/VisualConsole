@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace VisualConsole
 {
@@ -18,10 +19,28 @@ namespace VisualConsole
         {
             try
             {
+                Console.WriteLine("Setting up your resources...");
+
+                if (!Directory.Exists(workingDir + "\\sprites"))
+                    Directory.CreateDirectory(workingDir + "\\sprites");
+
+                if (!Directory.Exists(workingDir + "\\audio"))
+                    Directory.CreateDirectory(workingDir + "\\audio");
+
                 projectDir = Directory.GetParent(workingDir).Parent.Parent.ToString();
-                Directory.Delete($"{workingDir}\\sprites", true);
-                DirectoryCopy($"{projectDir}\\sprites", $"{workingDir}\\sprites", true);
-                File.Copy($"{projectDir}\\settings.json", $"{workingDir}\\settings.json");
+
+                if (Directory.Exists(projectDir + "\\sprites"))
+                {
+                    Console.WriteLine("Removing sprites...");
+                    Directory.Delete($"{workingDir}\\sprites", true);
+                    Console.WriteLine("Removing audio...");
+                    Directory.Delete($"{workingDir}\\audio", true);
+                    Console.WriteLine("Adding current sprites in project directory...");
+                    DirectoryCopy($"{projectDir}\\sprites", $"{workingDir}\\sprites", true);
+                    Console.WriteLine("Adding current audio in project directory...");
+                    DirectoryCopy($"{projectDir}\\audio", $"{workingDir}\\audio", true);
+                    File.Copy($"{projectDir}\\settings.json", $"{workingDir}\\settings.json", true);
+                }
             }
             catch
             {

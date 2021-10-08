@@ -27,7 +27,7 @@ namespace VisualConsole
         SoundPlayer soundPlayer;
 
         Sprite sprite;
-        int animationSpeed = 30;
+        int animationSpeed = 1;
 
         void _Start(object sender, EventArgs e)
         {
@@ -48,7 +48,7 @@ namespace VisualConsole
 
             if (OperatingSystem.IsWindows())
             {
-                soundPlayer = new SoundPlayer("BadApple.wav");
+                soundPlayer = new SoundPlayer("audio\\BadApple.wav");
                 soundPlayer.Load();
             }
 

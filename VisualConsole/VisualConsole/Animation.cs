@@ -62,6 +62,8 @@ namespace VisualConsole
                 {
                     foreach (Sprite frame in this.frames.ToArray())
                     {
+                        frame.position = this.position;
+
                         if (frame.maxWidth > biggestWidth)
                         {
                             biggestWidth = frame.maxWidth;
