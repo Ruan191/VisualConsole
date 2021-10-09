@@ -7,5 +7,3 @@ Bad Apple: https://www.youtube.com/watch?v=n-tp3iXwr0U
 Requires:
 * dotnet5
 * Newtonsoft.Json
-
-NOTE: Make sure that the sprite folder and settings.json is in the excuting application directory before running the application
