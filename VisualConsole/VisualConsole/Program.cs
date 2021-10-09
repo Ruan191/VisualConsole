@@ -31,10 +31,12 @@ namespace VisualConsole
             double timeBetweenMoves = 8.1;
             double timeSinceLastMove = 0;
 
+            Time.Start();
+
             while (Settings.UpdateEnabled)
             {
-                double deltaTimeMS = stopwatch.Elapsed.TotalMilliseconds - timeAtPreviousFrame;
-                timeAtPreviousFrame = stopwatch.Elapsed.TotalMilliseconds;
+                double deltaTimeMS = Time.deltaTime - timeAtPreviousFrame;
+                timeAtPreviousFrame = Time.deltaTime;
 
                 timeSinceLastMove += deltaTimeMS;
 
