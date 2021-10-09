@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace VisualConsole
+namespace VisualConsole.General
 {
     static class FileManager
     {
@@ -24,8 +24,8 @@ namespace VisualConsole
                 if (!Directory.Exists(workingDir + "\\sprites"))
                     Directory.CreateDirectory(workingDir + "\\sprites");
 
-                if (!Directory.Exists(workingDir + "\\audio"))
-                    Directory.CreateDirectory(workingDir + "\\audio");
+                if (!Directory.Exists(workingDir + "\\_audio"))
+                    Directory.CreateDirectory(workingDir + "\\_audio");
 
                 projectDir = Directory.GetParent(workingDir).Parent.Parent.ToString();
 
@@ -34,11 +34,11 @@ namespace VisualConsole
                     Console.WriteLine("Removing sprites...");
                     Directory.Delete($"{workingDir}\\sprites", true);
                     Console.WriteLine("Removing audio...");
-                    Directory.Delete($"{workingDir}\\audio", true);
+                    Directory.Delete($"{workingDir}\\_audio", true);
                     Console.WriteLine("Adding current sprites in project directory...");
                     DirectoryCopy($"{projectDir}\\sprites", $"{workingDir}\\sprites", true);
                     Console.WriteLine("Adding current audio in project directory...");
-                    DirectoryCopy($"{projectDir}\\audio", $"{workingDir}\\audio", true);
+                    DirectoryCopy($"{projectDir}\\_audio", $"{workingDir}\\_audio", true);
                     File.Copy($"{projectDir}\\settings.json", $"{workingDir}\\settings.json", true);
                 }
             }

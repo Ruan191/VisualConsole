@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VisualConsole
+namespace VisualConsole.General
 {
     class TextBox : MapObject, IRenderable
     {

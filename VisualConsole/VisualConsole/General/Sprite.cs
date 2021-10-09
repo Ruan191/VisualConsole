@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VisualConsole
+namespace VisualConsole.General
 {
     public class Sprite : MapObject, IRenderable
     {

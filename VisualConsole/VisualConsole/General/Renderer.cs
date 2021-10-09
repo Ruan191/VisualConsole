@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace VisualConsole
+namespace VisualConsole.General
 {
     static class Renderer
     {

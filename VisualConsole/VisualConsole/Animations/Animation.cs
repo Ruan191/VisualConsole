@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using VisualConsole.General;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
-namespace VisualConsole
+namespace VisualConsole.Animations
 {
     public class Animation : MapObject
     {
@@ -13,25 +12,18 @@ namespace VisualConsole
         public bool stopped;
         public int pausesBetweenFrames = 2;
 
-        public Animation(string folderName, Vector2 position, ConsoleColor color = ConsoleColor.White)
+        public Animation(string folderName, Vector2 position, string dupeFileNames = "", ConsoleColor color = ConsoleColor.White)
         {
-            //string[] fileNames = FileManager.GetAllFileNames("\\sprites\\animations\\" + folderName);
             int ln = FileManager.GetAllFileNames($"\\sprites\\animations\\" + folderName).Length;
             List<string> fileNames = new List<string>();
 
             for (int i = 1; i < ln; i++)
             {
-                //fileNames.Add($"{FileManager.workingDir}\\sprites\\animations\\{folderName}\\BA{i}.txt");
-                frames.Add(new Sprite($"\\animations\\{folderName}\\BA{i}.txt", position, color: color));
+                frames.Add(new Sprite($"\\animations\\{folderName}\\{dupeFileNames}{i}.txt", position, color: color));
             }
 
             this.color = color;
             this.position = position;
-
-            foreach (string fileName in fileNames)
-            {
-                //frames.Add(new Sprite($"animations\\{folderName}\\" + fileName.Split('\\').Last(), position, color: color));
-            }
         }
 
         //TO DO

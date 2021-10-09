@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VisualConsole
+namespace VisualConsole.General
 {
     public static class Map
     {

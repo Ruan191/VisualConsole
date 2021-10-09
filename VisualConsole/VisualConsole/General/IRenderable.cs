@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VisualConsole
+namespace VisualConsole.General
 {
     public interface IRenderable
     {

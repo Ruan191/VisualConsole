@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using VisualConsole.General;
+using System.Threading.Tasks;
 
 namespace VisualConsole
 {
     class Program
     {
+        //set to false if no changes were made to your sprites, animation and audio folder and settings file. Keep true for first time run or if changes were made
         static bool changeWhereMadeToFiles = true;
 
         static void Main(string[] args)

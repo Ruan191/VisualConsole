@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace VisualConsole
+namespace VisualConsole.General
 {
     static class JsonConverter
     {
