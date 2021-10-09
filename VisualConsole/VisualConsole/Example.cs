@@ -1,5 +1,4 @@
 ﻿using System;
-using VisualConsole.Audio;
 using VisualConsole.General;
 using VisualConsole.Animations;
 
@@ -17,36 +16,36 @@ namespace VisualConsole
             Controls.OnCKPressed += _OnCKPressed;
         }
 
-        Animation animation;
-        Animation animation2;
-        Animation animation3;
-        Animation animation4;
-        SoundPlayer soundPlayer;
-
         Sprite sprite;
         int animationSpeed = 1;
+        Random random = new Random();
 
         void _Start(object sender, EventArgs e)
         {
             Map.Build(new Vector2(100, 50));
             sprite = new Sprite("BA75.txt", new Vector2());
 
-            animation = new Animation("badapple", new Vector2(),"BA", ConsoleColor.Red);
+            Animation animation = new Animation("dance", new Vector2(), color:ConsoleColor.Red);
             animation.pausesBetweenFrames = animationSpeed;
 
-            animation2 = new Animation("badapple", new Vector2(sprite.size.x, 0), "BA", ConsoleColor.Blue);
-            animation2.pausesBetweenFrames = animationSpeed;
+            int frameCount = 0;
 
-            animation3 = new Animation("badapple", new Vector2(0, sprite.size.y), "BA", ConsoleColor.Green);
-            animation3.pausesBetweenFrames = animationSpeed;
+            animation.Play(() =>
+            {
+                if (++frameCount % 50 == 0)
+                    animation.color = (ConsoleColor)random.Next(1, 15);
+            });
+            
+            if (OperatingSystem.IsWindows())
+            {
+                Console.SetWindowSize(sprite.size.x, sprite.size.y + 5);
+                Console.SetWindowPosition(0, 0);
+            }
 
-            animation4 = new Animation("badapple", new Vector2(sprite.size.x, sprite.size.y), "BA", ConsoleColor.Yellow);
-            animation4.pausesBetweenFrames = animationSpeed;
+            MapObject welcomeText = new MapObject("Thank you for trying out VisualConsle!");
+            welcomeText.position = new Vector2((sprite.size.x / 2) - (welcomeText.ToString().Length / 2) - 3, sprite.size.y + 2);//new Vector2((sprite.size.x / 2) - (welcomeText.ToString().Length / 2), sprite.size.y + 3);
+            welcomeText.Render();
 
-            soundPlayer = new SoundPlayer();//("audio\\BadApple.wav");
-
-            Console.SetWindowSize(sprite.size.x * 2, sprite.size.y * 2);
-            Console.SetWindowPosition(0, 0);
         }
 
         void _Update(object sender, EventArgs e)
@@ -60,18 +59,6 @@ namespace VisualConsole
 
         void _OnCKPressed(object sender, Controls.CKPressedHandler e)
         {
-            if (e.keyPressed == ConsoleKey.Enter)
-            {
-                soundPlayer.PlaySound("BadApple", false);
-
-                animation.Play();
-
-                animation2.Play();
-
-                animation3.Play();
-
-                animation4.Play();
-            }
         }
 
     }

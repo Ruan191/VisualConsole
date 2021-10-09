@@ -43,7 +43,7 @@ namespace VisualConsole.Animations
         /// Spawns the animation in the console and runs it in a loop unless disabled
         /// ,the size of the animation will be based on the size of the biggest sprite
         /// </summary>
-        public void Play()
+        public void Play(Action onFrameChange = null)
         {
             stopped = false;
             int biggestWidth = 1;
@@ -55,6 +55,7 @@ namespace VisualConsole.Animations
                     foreach (Sprite frame in this.frames.ToArray())
                     {
                         frame.position = this.position;
+                        frame.color = this.color;
 
                         if (frame.maxWidth > biggestWidth)
                         {
@@ -73,6 +74,8 @@ namespace VisualConsole.Animations
                         Renderer.RequestRender((frame.id, frame));
 
                         Task.Delay(pausesBetweenFrames).Wait();
+
+                        onFrameChange();
                     }
                 }
             });

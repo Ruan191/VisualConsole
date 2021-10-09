@@ -28,7 +28,7 @@ namespace VisualConsole
 
             Controls.KeyPressed();
 
-            double timeBetweenMoves = 8.1;
+            double timeBetweenMoves = 41;
             double timeSinceLastMove = 0;
 
             Time.Start();
