@@ -34,6 +34,11 @@ namespace VisualConsole.General
             content = linesContent;
         }
 
+        /// <summary>
+        /// Renders the sprite to the console
+        /// </summary>
+        /// <param name="action">no effect</param>
+        /// <param name="chosenPos">no effect</param>
         public new void Render(Action action = null, Vector2 chosenPos = null)
         {
             int a = 0;

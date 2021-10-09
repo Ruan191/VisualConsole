@@ -15,7 +15,6 @@ namespace VisualConsole
             if (changeWhereMadeToFiles)
                 FileManager.AttemptCopyOfProjectFiles();
 
-
             Settings.Initialize();
             Console.Title = Settings.ConsoleName;
             Console.CursorVisible = false;
@@ -57,6 +56,7 @@ namespace VisualConsole
             }
         }
 
+        //Place your own classes here
         static void InitializeObjects()
         {
             Example ex = new Example();

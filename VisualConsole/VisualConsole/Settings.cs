@@ -15,6 +15,9 @@ namespace VisualConsole
         public static int PauseTimeBetweenUpdates { get; set; } = 15;
         public static bool DebugEnabled { get; set; } = false;
 
+        /// <summary>
+        /// Assigns all the settings in settings.json to the Settings class
+        /// </summary>
         public static void Initialize()
         {
             dynamic settings = JsonConverter.Deserialize(FileManager.ReadAllText("settings.json"));

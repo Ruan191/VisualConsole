@@ -22,6 +22,10 @@ namespace VisualConsole.General
 
         public static char keyPressed;
         public static ConsoleKey CKPressed;
+
+        /// <summary>
+        /// Tracks the keys pressed by the user
+        /// </summary>
         public static async void KeyPressed()
         {
             await Task.Run(() => {

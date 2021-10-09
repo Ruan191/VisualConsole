@@ -15,6 +15,9 @@ namespace VisualConsole.General
 
         public static string projectDir = "";
 
+        /// <summary>
+        /// Copies your work in your project directory to your Debug or Release build directory
+        /// </summary>
         public static void AttemptCopyOfProjectFiles()
         {
             try

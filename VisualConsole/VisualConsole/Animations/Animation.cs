@@ -12,6 +12,14 @@ namespace VisualConsole.Animations
         public bool stopped;
         public int pausesBetweenFrames = 2;
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="folderName">Name of the folder containing your animation. Note frames in the animations needs to be numberd in some way starting from 1</param>
+        /// <param name="position">position where the animation should be on the console</param>
+        /// <param name="dupeFileNames">Name of the duplicate file containing a number next to it</param>
+        /// <param name="color">The color of the animation</param>
         public Animation(string folderName, Vector2 position, string dupeFileNames = "", ConsoleColor color = ConsoleColor.White)
         {
             int ln = FileManager.GetAllFileNames($"\\sprites\\animations\\" + folderName).Length;
@@ -43,6 +51,7 @@ namespace VisualConsole.Animations
         /// Spawns the animation in the console and runs it in a loop unless disabled
         /// ,the size of the animation will be based on the size of the biggest sprite
         /// </summary>
+        /// <param name="onFrameChange">If not null runs a Action every frame</param>
         public void Play(Action onFrameChange = null)
         {
             stopped = false;

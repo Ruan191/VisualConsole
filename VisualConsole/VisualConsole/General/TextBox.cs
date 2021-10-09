@@ -12,6 +12,10 @@ namespace VisualConsole.General
         public static List<TextBox> textReads = new List<TextBox>();
         public static TextBox currentSelectedTextRead;
 
+        /// <summary>
+        /// Use this to enable users to type. Note needs to be rendered first.
+        /// </summary>
+        /// <param name="position">Position of the textBox</param>
         public TextBox(Vector2 position)
         {
             this.position = position;
@@ -24,6 +28,10 @@ namespace VisualConsole.General
             }
         }
 
+        /// <summary>
+        /// Selects a textbox to be used
+        /// </summary>
+        /// <param name="textRead">The textbox to be used</param>
         public static void Select(TextBox textRead)
         {
             currentSelectedTextRead.selected = false;
@@ -33,6 +41,10 @@ namespace VisualConsole.General
             Controls.OnKeyPressed += textRead._OnKeyPressed;
         }
 
+        /// <summary>
+        /// Selects a textbox to be used
+        /// </summary>
+        /// <param name="index">The textbox to be used based on index</param>
         public static void SelectByIndex(int index)
         {
             currentSelectedTextRead.selected = false;
@@ -66,6 +78,11 @@ namespace VisualConsole.General
             Renderer.RequestRender((this.id, this));
         }
 
+        /// <summary>
+        /// Renders the textbox to the console
+        /// </summary>
+        /// <param name="action">no effect</param>
+        /// <param name="chosenPos">no effect</param>
         public new void Render(Action action = null, Vector2 chosenPos = null)
         {
             Map.map[position.x, position.y] = this;

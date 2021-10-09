@@ -9,6 +9,10 @@ namespace VisualConsole.General
         public static MapObject[,] map;
         public static char background = ' ';
 
+        /// <summary>
+        /// Builds the map where everything can be placed upon and rendered
+        /// </summary>
+        /// <param name="size">Sets the size of the map</param>
         public static void Build(Vector2 size)
         {
             Console.Clear();
@@ -74,6 +78,13 @@ namespace VisualConsole.General
         Vector2 prev;
         Vector2 dir;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj">To be showen on the console</param>
+        /// <param name="position"></param>
+        /// <param name="size"></param>
+        /// <param name="color"></param>
         public MapObject(object obj, Vector2 position = null, Vector2 size = null, ConsoleColor color = ConsoleColor.White)
         {
             id = ++numOfObj;
@@ -90,6 +101,11 @@ namespace VisualConsole.General
             size = new Vector2();
         }
 
+        /// <summary>
+        /// Renders the MapObject to the console
+        /// </summary>
+        /// <param name="action">no effect</param>
+        /// <param name="chosenPos">no effect</param>
         public void Render(Action action = null, Vector2 chosenPos = null)
         {
             for (int y = 0; y < size.y; y++)

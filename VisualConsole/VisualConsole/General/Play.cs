@@ -12,6 +12,9 @@ namespace VisualConsole.General
         protected static event EventHandler Update;
         protected static event EventHandler LateUpdate;
 
+        /// <summary>
+        /// To run once before update start 
+        /// </summary>
         public static void PerformStart()
         {
             if (Start != null)
@@ -20,6 +23,9 @@ namespace VisualConsole.General
             }
         }
 
+        /// <summary>
+        /// To run on every update
+        /// </summary>
         public static void PerformUpdate()
         {
             if (Update != null)
@@ -28,6 +34,9 @@ namespace VisualConsole.General
             }
         }
 
+        /// <summary>
+        /// To run after update
+        /// </summary>
         public static void PerformLateUpdate()
         {
             if (LateUpdate != null)
