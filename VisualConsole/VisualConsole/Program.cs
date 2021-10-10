@@ -21,9 +21,7 @@ namespace VisualConsole
             InitializeObjects();
             Play.PerformStart();
 
-            Stopwatch stopwatch = new Stopwatch();
             double timeAtPreviousFrame = 0;
-            stopwatch.Start();
 
             Controls.KeyPressed();
 
