@@ -42,7 +42,6 @@ namespace VisualConsole.General
                     DirectoryCopy($"{projectDir}\\sprites", $"{workingDir}\\sprites", true);
                     Console.WriteLine("Adding current audio in project directory...");
                     DirectoryCopy($"{projectDir}\\_audio", $"{workingDir}\\_audio", true);
-                    File.Copy($"{projectDir}\\settings.json", $"{workingDir}\\settings.json", true);
                 }
             }
             catch

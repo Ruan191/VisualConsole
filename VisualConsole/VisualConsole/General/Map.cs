@@ -13,12 +13,15 @@ namespace VisualConsole.General
         /// Builds the map where everything can be placed upon and rendered
         /// </summary>
         /// <param name="size">Sets the size of the map</param>
+        /// <param name="toRun">Classes to be executed in the scene</param>
         public static void Build(Vector2 size)
         {
             Console.Clear();
-            Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
 
-            char tile = Settings.DebugEnabled ? '.' : background;
+            if (OperatingSystem.IsWindows())
+                Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+
+            char tile = Scene.activeScene.settings.DebugEnabled ? '.' : background;
 
             Map.size = size;
             map = new MapObject[size.x, size.y];
@@ -64,8 +67,6 @@ namespace VisualConsole.General
 
     public class MapObject : IRenderable
     {
-
-        public event EventHandler OnCollision;
         public object obj;
         static uint numOfObj = 0;
         public readonly uint id;

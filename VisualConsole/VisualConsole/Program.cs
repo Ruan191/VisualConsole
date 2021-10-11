@@ -15,22 +15,20 @@ namespace VisualConsole
             if (changeWhereMadeToFiles)
                 FileManager.AttemptCopyOfProjectFiles();
 
-            Settings.Initialize();
-            Console.Title = Settings.ConsoleName;
-            Console.CursorVisible = false;
-            InitializeObjects();
-            Play.PerformStart();
+            Settings.InitializeSettings();
+            Scene defaultScene = new Scene("scene1", new Vector2(100, 50), Settings.settings["Default"], new Play[] { new Example() });
+
+            Scene.Start(defaultScene);
 
             double timeAtPreviousFrame = 0;
 
-            Controls.KeyPressed();
-
-            double timeBetweenMoves = 41;
+            double timeBetweenMoves = Scene.activeScene.settings.TimeBetweenRenderTrigger;
             double timeSinceLastMove = 0;
 
             Time.Start();
+            Controls.KeyPressed();
 
-            while (Settings.UpdateEnabled)
+            while (Scene.activeScene.settings.UpdateEnabled)
             {
                 double deltaTimeMS = Time.deltaTime - timeAtPreviousFrame;
                 timeAtPreviousFrame = Time.deltaTime;
@@ -46,18 +44,13 @@ namespace VisualConsole
                     }
 
                     timeSinceLastMove -= timeBetweenMoves;
+
+                    Play.PerformUpdate();
+                    Play.PerformLateUpdate();
                 }
 
-                Play.PerformUpdate();
-                Task.Delay(Settings.PauseTimeBetweenUpdates).Wait();
-                Play.PerformLateUpdate();
+                Task.Delay(Scene.activeScene.settings.PauseTimeBetweenUpdates).Wait();
             }
-        }
-
-        //Place your own classes here
-        static void InitializeObjects()
-        {
-            Example ex = new Example();
         }
     }
 }

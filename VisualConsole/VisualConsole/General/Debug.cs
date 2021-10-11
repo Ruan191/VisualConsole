@@ -18,20 +18,18 @@ namespace VisualConsole.General
         public static void Log(string content, Vector2 position = null)
         {
             DebugMessage debugMessage;
-
-            if (Settings.DebugEnabled)
+            
+            if (Scene.activeScene.settings.DebugEnabled)
             {
                 if (lastYPosition >= Console.BufferHeight - 1)
                 {
                     lastYPosition = 0;
                 }
 
-                //Renderer.RequestRender((9999 + ++numOfRequests, () => {
                 if (position == null)
                     debugMessage = new DebugMessage(content, new Vector2(0, lastYPosition++));
                 else
                     debugMessage = new DebugMessage(content, position);
-                //}));
 
                 Renderer.RequestRender((9999 + ++numOfRequests, debugMessage));
             }

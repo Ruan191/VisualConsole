@@ -15,6 +15,9 @@ namespace VisualConsole.General
             public char keyPressed;
         }
 
+        /// <summary>
+        /// Gets Console keys
+        /// </summary>
         public class CKPressedHandler : EventArgs
         {
             public ConsoleKey keyPressed;

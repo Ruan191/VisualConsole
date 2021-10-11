@@ -1,6 +1,7 @@
 ﻿using System;
 using VisualConsole.General;
 using VisualConsole.Animations;
+using System.Threading.Tasks;
 
 namespace VisualConsole
 {
@@ -8,7 +9,7 @@ namespace VisualConsole
     {
         //Example code on how to use the framework
 
-        public Example()
+        public override void SubHere()
         {
             Start += _Start;
             Update += _Update;
@@ -19,13 +20,13 @@ namespace VisualConsole
         Sprite sprite;
         int animationSpeed = 1;
         Random random = new Random();
+        Animation animation;
 
-        void _Start(object sender, EventArgs e)
+        public override void _Start(object sender, EventArgs e)
         {
-            Map.Build(new Vector2(100, 50));
             sprite = new Sprite("BA75.txt", new Vector2());
 
-            Animation animation = new Animation("dance", new Vector2(), color:ConsoleColor.Red);
+            animation = new Animation("dance", new Vector2(), color:ConsoleColor.Red);
             animation.pausesBetweenFrames = animationSpeed;
 
             int frameCount = 0;
@@ -45,11 +46,11 @@ namespace VisualConsole
             MapObject welcomeText = new MapObject("Thank you for trying out VisualConsle!");
             welcomeText.position = new Vector2((sprite.size.x / 2) - (welcomeText.ToString().Length / 2) - 3, sprite.size.y + 2);//new Vector2((sprite.size.x / 2) - (welcomeText.ToString().Length / 2), sprite.size.y + 3);
             welcomeText.Render();
-
         }
 
-        void _Update(object sender, EventArgs e)
+        public override void _Update(object sender, EventArgs e)
         {
+
         }
 
         void _OnKeyPressed(object sender, Controls.KeyPressedHandler e)
@@ -59,7 +60,13 @@ namespace VisualConsole
 
         void _OnCKPressed(object sender, Controls.CKPressedHandler e)
         {
+
         }
 
+        public override void Remove()
+        {
+            Controls.OnKeyPressed -= _OnKeyPressed;
+            Controls.OnCKPressed -= _OnCKPressed;
+        }
     }
 }

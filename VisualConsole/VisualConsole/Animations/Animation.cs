@@ -32,6 +32,8 @@ namespace VisualConsole.Animations
 
             this.color = color;
             this.position = position;
+
+            Scene.OnSceneChange += Scene_OnSceneChange;
         }
 
         //TO DO
@@ -80,11 +82,13 @@ namespace VisualConsole.Animations
                         frame.size.y = biggestHeight;
 
                         this.size = new Vector2(biggestWidth, biggestHeight);
-                        Renderer.RequestRender((frame.id, frame));
+                        if (!stopped)
+                            Renderer.RequestRender((frame.id, frame));
 
                         Task.Delay(pausesBetweenFrames).Wait();
 
-                        onFrameChange();
+                        if (onFrameChange != null)
+                            onFrameChange();
                     }
                 }
             });
@@ -95,6 +99,12 @@ namespace VisualConsole.Animations
         public void Stop()
         {
             stopped = true;
+        }
+
+        private void Scene_OnSceneChange(object sender, EventArgs e)
+        {
+            stopped = true;
+            Scene.OnSceneChange -= Scene_OnSceneChange;
         }
     }
 }
