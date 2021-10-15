@@ -37,7 +37,7 @@ namespace VisualConsole
         public bool UpdateEnabled { get; set; } = true;
         public int PauseTimeBetweenUpdates { get; set; } = 15;
         public double TimeBetweenRenderTrigger { get; set; } = 41;
-        public bool DebugEnabled { get; set; } = false;
+        public bool DebugEnabled { get; set; } = true;
 
         /// <summary>
         /// Assigns your settings here

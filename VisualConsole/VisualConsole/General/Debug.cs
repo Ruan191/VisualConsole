@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,6 @@ namespace VisualConsole.General
 {
     class Debug
     {
-        static uint numOfRequests = 0;
-        static int lastYPosition = 0;
         /// <summary>
         /// Sends messages on the out side of the Map
         /// </summary>
@@ -17,42 +16,14 @@ namespace VisualConsole.General
         /// <param name="position">Determines where the printed message should go in the Debug space. If left empty then the message will be printed on a new line</param>
         public static void Log(string content, Vector2 position = null)
         {
-            DebugMessage debugMessage;
-            
             if (Scene.activeScene.settings.DebugEnabled)
-            {
-                if (lastYPosition >= Console.BufferHeight - 1)
+                using (var writer = new FileStream(@"C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\VisualConsole\VisualConsole\debug.txt", FileMode.Open, FileAccess.Write, FileShare.ReadWrite))
                 {
-                    lastYPosition = 0;
+                    foreach (char c in content)
+                    {
+                        writer.WriteByte((byte)c);
+                    }
                 }
-
-                if (position == null)
-                    debugMessage = new DebugMessage(content, new Vector2(0, lastYPosition++));
-                else
-                    debugMessage = new DebugMessage(content, position);
-
-                Renderer.RequestRender((9999 + ++numOfRequests, debugMessage));
-            }
-        }
-
-        class DebugMessage : IRenderable
-        {
-            public object content;
-            Vector2 position;
-
-            public DebugMessage(string content, Vector2 position)
-            {
-                this.content = content;
-                this.position = position;
-            }
-
-            public void Render(Action action = null, Vector2 chosenPos = null)
-            {
-                Vector2 logPosition = chosenPos ?? new Vector2();
-                Console.SetCursorPosition((Map.size.x + 5) + logPosition.x, 0 + logPosition.y);
-
-                Console.Write("-> " + content);
-            }
         }
     }
 }

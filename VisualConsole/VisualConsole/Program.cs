@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using VisualConsole.General;
 using System.Threading.Tasks;
+using Debugger;
 
 namespace VisualConsole
 {
@@ -12,6 +13,7 @@ namespace VisualConsole
 
         static void Main(string[] args)
         {
+            
             if (changeWhereMadeToFiles)
                 FileManager.AttemptCopyOfProjectFiles();
 
@@ -27,6 +29,15 @@ namespace VisualConsole
 
             Time.Start();
             Controls.KeyPressed();
+
+            if (Scene.activeScene.settings.DebugEnabled)
+                using (var debugger = new Process())
+                {
+                    debugger.StartInfo.FileName = @"C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\VisualConsole\Debugger\bin\Debug\net5.0\Debugger.exe";
+                    debugger.StartInfo.CreateNoWindow = false;
+                    debugger.StartInfo.UseShellExecute = true;
+                    debugger.Start();
+                }
 
             while (Scene.activeScene.settings.UpdateEnabled)
             {
@@ -48,7 +59,7 @@ namespace VisualConsole
                     Play.PerformUpdate();
                     Play.PerformLateUpdate();
                 }
-
+                
                 Task.Delay(Scene.activeScene.settings.PauseTimeBetweenUpdates).Wait();
             }
         }

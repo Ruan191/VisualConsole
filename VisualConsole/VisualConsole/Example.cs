@@ -21,6 +21,7 @@ namespace VisualConsole
         int animationSpeed = 1;
         Random random = new Random();
         Animation animation;
+        int frameCount = 0;
 
         public override void _Start(object sender, EventArgs e)
         {
@@ -29,12 +30,12 @@ namespace VisualConsole
             animation = new Animation("dance", new Vector2(), color:ConsoleColor.Red);
             animation.pausesBetweenFrames = animationSpeed;
 
-            int frameCount = 0;
-
             animation.Play(() =>
             {
                 if (++frameCount % 50 == 0)
+                {
                     animation.color = (ConsoleColor)random.Next(1, 15);
+                }
             });
             
             if (OperatingSystem.IsWindows())
@@ -43,14 +44,14 @@ namespace VisualConsole
                 Console.SetWindowPosition(0, 0);
             }
 
-            MapObject welcomeText = new MapObject("Thank you for trying out VisualConsle!");
+            MapObject welcomeText = new MapObject("Thank you for trying out VisualConsole!");
             welcomeText.position = new Vector2((sprite.size.x / 2) - (welcomeText.ToString().Length / 2) - 3, sprite.size.y + 2);//new Vector2((sprite.size.x / 2) - (welcomeText.ToString().Length / 2), sprite.size.y + 3);
             welcomeText.Render();
         }
 
         public override void _Update(object sender, EventArgs e)
         {
-
+            
         }
 
         void _OnKeyPressed(object sender, Controls.KeyPressedHandler e)

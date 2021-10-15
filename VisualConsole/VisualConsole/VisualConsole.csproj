@@ -6,11 +6,16 @@
     <ApplicationIcon />
     <Win32Resource />
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>VisualConsole.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Windows.Extensions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Debugger\Debugger.csproj" />
   </ItemGroup>
 
   <ItemGroup>
