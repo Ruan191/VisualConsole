@@ -9,3 +9,4 @@
 Requires:
 * dotnet5
 * Newtonsoft.Json
+* Debugger will need to be build before you can use it
