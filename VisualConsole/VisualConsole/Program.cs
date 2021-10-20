@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using VisualConsole.General;
 using System.Threading.Tasks;
+using VisualConsole.Audio;
 using Debugger;
 
 namespace VisualConsole
@@ -13,7 +14,6 @@ namespace VisualConsole
 
         static void Main(string[] args)
         {
-            
             if (changeWhereMadeToFiles)
                 FileManager.AttemptCopyOfProjectFiles();
 

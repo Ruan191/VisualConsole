@@ -31,7 +31,7 @@ namespace VisualConsole.General
                     Directory.CreateDirectory(workingDir + "\\_audio");
 
                 projectDir = Directory.GetParent(workingDir).Parent.Parent.ToString();
-
+                
                 if (Directory.Exists(projectDir + "\\sprites"))
                 {
                     Console.WriteLine("Removing sprites...");
@@ -42,6 +42,7 @@ namespace VisualConsole.General
                     DirectoryCopy($"{projectDir}\\sprites", $"{workingDir}\\sprites", true);
                     Console.WriteLine("Adding current audio in project directory...");
                     DirectoryCopy($"{projectDir}\\_audio", $"{workingDir}\\_audio", true);
+                    File.Create(projectDir + "\\debug.txt").Dispose();
                 }
             }
             catch

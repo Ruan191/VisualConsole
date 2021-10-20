@@ -10,10 +10,12 @@ namespace Debugger
         {
             string toCompare = "";
             DirectoryInfo directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent;
-            while (true)
+
+            using (var reader = new FileStream($@"{directoryInfo}\debug.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                using (var reader = new FileStream($@"{directoryInfo}\debug.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                while (true)
                 {
+
                     string text = "";
 
                     while (reader.Position < reader.Length)
@@ -21,14 +23,20 @@ namespace Debugger
                         text += (char)reader.ReadByte();
                     }
 
-                    if (text != toCompare && text != "")
+                    if (!text.Equals(toCompare) && text != "")
                     {
+                        if (text[0] == '!')
+                            Console.ForegroundColor = ConsoleColor.Red;
+
                         Console.WriteLine(text);
                         toCompare = text;
+
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
+
+                    reader.Position = 0;
+                    Task.Delay(41).Wait();
                 }
-                
-                Task.Delay(41).Wait();
             }
         }
     }

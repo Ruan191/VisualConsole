@@ -35,7 +35,6 @@ namespace VisualConsole.General
             scenes.Add(name ,this);
         }
 
-
         /// <summary>
         /// Starts the scene removes all previous scenes content and replace it with the new scenes content
         /// </summary>
