@@ -10,6 +10,7 @@ namespace Debugger
         {
             string toCompare = "";
             DirectoryInfo directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent;
+            Console.Title = "Debugger";
 
             using (var reader = new FileStream($@"{directoryInfo}\debug.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
