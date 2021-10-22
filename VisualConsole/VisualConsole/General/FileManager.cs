@@ -7,6 +7,7 @@ namespace VisualConsole.General
     static class FileManager
     {
         public static readonly string workingDir = Directory.GetCurrentDirectory();
+        public static bool projectDirFound{ get; private set; } = false;
 
         public static string ReadAllText(string path) => File.ReadAllText(workingDir + "\\" + path);
         public static string[] ReadLines(string path) => File.ReadAllLines(workingDir + "\\" + path);
@@ -34,6 +35,7 @@ namespace VisualConsole.General
                 
                 if (Directory.Exists(projectDir + "\\sprites"))
                 {
+                    projectDirFound = true;
                     Console.WriteLine("Removing sprites...");
                     Directory.Delete($"{workingDir}\\sprites", true);
                     Console.WriteLine("Removing audio...");
@@ -49,6 +51,11 @@ namespace VisualConsole.General
             {
                 return;
             }
+        }
+
+        public static string GetParent(string path)
+        {
+            return Directory.GetParent(path).FullName;
         }
 
         //https://docs.microsoft.com/en-us/dotnet/standard/io/how-to-copy-directories
