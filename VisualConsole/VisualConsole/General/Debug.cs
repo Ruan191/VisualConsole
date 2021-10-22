@@ -9,7 +9,7 @@ namespace VisualConsole.General
 {
     class Debug
     {
-        static FileStream writer = new FileStream(@"C:\Users\Ruan\Documents\GitHub\Basic-Console-GameEngine\VisualConsole\VisualConsole\debug.txt", FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
+        static FileStream writer = new FileStream(@$"{FileManager.projectDir}\debug.txt", FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
 
         /// <summary>
         /// Sends messages on the out side of the Map
