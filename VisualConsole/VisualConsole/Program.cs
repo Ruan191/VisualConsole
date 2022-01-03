@@ -51,11 +51,12 @@ namespace VisualConsole
                     (uint id, IRenderable action) toRun;
                     if (Renderer.renderQueue.TryDequeue(out toRun))
                     {
+                        //Console.Clear();
                         toRun.action.Render();
                     }
 
                     timeSinceLastMove -= timeBetweenMoves;
-
+                    //global::VisualConsole.General.Debug.Log(Math.Round(timeSinceLastMove));
                     Play.PerformUpdate();
                     Play.PerformLateUpdate();
                 }

@@ -16,10 +16,10 @@ namespace VisualConsole.General
         /// </summary>
         /// <param name="content">Message to be printed</param>
         /// <param name="position">Determines where the printed message should go in the Debug space. If left empty then the message will be printed on a new line</param>
-        public static void Log(string content)
+        public static void Log(object content)
         {
             if (Scene.activeScene.settings.DebugEnabled)
-                foreach (char c in content)
+                foreach (char c in content.ToString())
                 {
                     writer.WriteByte((byte)c);
                 }
@@ -27,10 +27,10 @@ namespace VisualConsole.General
             writer.Position = 0;
         }
 
-        public static void Error(string content)
+        public static void Error(object content)
         {
             if (Scene.activeScene.settings.DebugEnabled)
-                foreach (char c in '!' + content)
+                foreach (char c in '!' + content.ToString())
                 {
                     writer.WriteByte((byte)c);
                 }
