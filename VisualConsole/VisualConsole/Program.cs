@@ -39,6 +39,7 @@ namespace VisualConsole
                     debugger.Start();
                 }
 
+
             while (Scene.activeScene.settings.UpdateEnabled)
             {
                 double deltaTimeMS = Time.deltaTime - timeAtPreviousFrame;
@@ -56,7 +57,6 @@ namespace VisualConsole
                     }
 
                     timeSinceLastMove -= timeBetweenMoves;
-                    //global::VisualConsole.General.Debug.Log(Math.Round(timeSinceLastMove));
                     Play.PerformUpdate();
                     Play.PerformLateUpdate();
                 }

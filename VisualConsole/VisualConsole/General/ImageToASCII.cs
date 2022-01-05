@@ -12,12 +12,11 @@ namespace VisualConsole.General
     
     public static class ImageToASCII
     {
+        //static string grayScale = @" .:-=+*#%@";
+        static string grayScale = @"@%#*+=-:. ";
         public static void Convert(string imgName, string destination, string fileName)
         {
-            const int MAX = 126;
-            const int MIN = 33;
-
-            using (Bitmap bmp = new Bitmap(Image.FromFile(imgName), 100, 30))
+            using (Bitmap bmp = new Bitmap(Image.FromFile(imgName), 220, 60))
             {
                 using (StreamWriter writer = new StreamWriter($@"{destination}\{fileName}.txt"))
                 {
@@ -28,29 +27,13 @@ namespace VisualConsole.General
 
                             Color color = bmp.GetPixel(x, y);
                             
-                            byte toUse = (byte)(((color.R + color.G + color.B) / 3) / 3);
-                            
-                            
-                            writer.Write((char)(toUse + MIN));
-
+                            byte toUse = (byte)Math.Abs(((color.R + color.G + color.B) / 3) / 25.6f);
+                            writer.Write(grayScale[toUse]);
                         }
                         writer.Write('\n');
                     }
                 }
             }
         }
-
-        /*static byte Cap(byte input,byte min, byte max)
-        {
-            if (input >= max)
-            {
-                return 32;
-            }else if (input <= min)
-            {
-                return min;
-            }
-
-            return input;
-        }*/
     }
 }
